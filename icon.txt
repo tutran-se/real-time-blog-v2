@@ -1,0 +1,6 @@
+<i class="far fa-heart"></i>
+<i class="fas fa-heart"></i>
+<i class="fas fa-edit"></i>
+<i class="fas fa-trash"></i>
+<i class="fab fa-google"></i>
+<i class="fas fa-bell"></i>
