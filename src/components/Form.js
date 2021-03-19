@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import Loader from "./Loader";
-const Form = ({ post, setPost, handleFormSubmit, type }) => {
+const Form = ({ post, setPost, handleFormSubmit, type, limit }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -71,6 +71,12 @@ const Form = ({ post, setPost, handleFormSubmit, type }) => {
         value={post.content}
         onChange={(value) => setPost({ ...post, content: value })}
       />
+
+      {limit >= 3 && (
+        <h1 style={{ color: "var(--pink)" }}>
+          Ooops!! You have reached the limit
+        </h1>
+      )}
       {loading ? (
         <Loader />
       ) : (

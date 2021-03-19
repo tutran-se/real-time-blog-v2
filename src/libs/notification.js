@@ -1,7 +1,7 @@
 import firebase, { firestore } from "./firebaseConfig";
 
 export const createOneNotification = (notification) => {
-  const { uid, photoURL, displayName } = firebase.auth().currentUser;
+  const { uid, photoURL, displayName, email } = firebase.auth().currentUser;
   // console.log(notification.receiverId);
   // console.log(uid);
 
@@ -12,6 +12,7 @@ export const createOneNotification = (notification) => {
       senderPhotoURL: photoURL,
       senderName: displayName,
       isRead: false,
+      senderEmail: email,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }

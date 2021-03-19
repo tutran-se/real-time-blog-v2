@@ -47,3 +47,18 @@ export const deleteOnePost = async (post) => {
   // Delete post
   await firestore.collection("posts").doc(post.id).delete();
 };
+
+// Get post number of current user
+export const getPostNumbers = async () => {
+  const { uid } = firebase.auth().currentUser;
+  let query = firestore.collection("posts");
+  const snapshot = await query.where("uid", "==", uid).get();
+  if (snapshot.empty) {
+    return 0;
+  }
+  let count = 0;
+  snapshot.forEach((doc) => {
+    count++;
+  });
+  return count;
+};

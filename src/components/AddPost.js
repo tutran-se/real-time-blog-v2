@@ -5,12 +5,19 @@ import slugifyString from "slugify";
 import { v1 as uuidv1 } from "uuid";
 import firebase, { storageRef } from "../libs/firebaseConfig";
 import { useHistory } from "react-router";
-import { createOnePost } from "../libs/post";
+import { createOnePost, getPostNumbers } from "../libs/post";
 
 const AddPost = () => {
   const [post, setPost] = useState({ title: "", content: "" });
+  const [limit, setLimit] = useState(0);
   let history = useHistory();
-  const handleAddPost = (image) => {
+  const handleAddPost = async (image) => {
+    // Limit user from adding post
+    const limit = await getPostNumbers();
+    if (limit >= 3) {
+      setLimit(limit);
+      return;
+    }
     let slugify = slugifyString(post.title.trim().toLowerCase());
     // Test
     // console.log(slugify);
@@ -52,6 +59,7 @@ const AddPost = () => {
         setPost={setPost}
         handleFormSubmit={handleAddPost}
         type="Publish"
+        limit={limit}
       />
     </div>
   );
