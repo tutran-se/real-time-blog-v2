@@ -13,6 +13,6 @@
 - Notification
 
 ## Demo
-Link: https://realtimeblogapp.com/
+Link: https://real-time-blog-24e5b.web.app
 
 
